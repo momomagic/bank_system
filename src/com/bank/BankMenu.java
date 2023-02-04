@@ -70,4 +70,9 @@ public class BankMenu {
 
         System.out.println("Thank you for using our banking services");
     }
+
+
+    public BankAccount getBankAccount() {
+        return bankAccount;
+    }
 }
