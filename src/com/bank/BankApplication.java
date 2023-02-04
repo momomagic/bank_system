@@ -8,21 +8,21 @@ import java.util.Scanner;
 public class BankApplication {
 
 
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter your 'Name' and 'CustomerId' to access your Bank account:");
         String name = sc.nextLine();
         String customerId = sc.nextLine();
-        menu(name, customerId);
+        menu(new BankAccount(name,customerId));
     }
 
 
-    static void menu(final String name, final String customerId) {
+    static void menu(final BankAccount bankAccount) {
         Scanner sc = new Scanner(System.in);
         BankService bankService = new BankServiceImpl();
-        BankAccount bankAccount = new BankAccount(name, customerId);
-        System.out.println("Welcome " + name);
-        System.out.println("Your ID:" + customerId);
+        System.out.println("Welcome " + bankAccount.getCustomerName());
+        System.out.println("Your ID:" + bankAccount.getCustomerId());
         System.out.println("\n");
         System.out.println("a) Check Balance");
         System.out.println("b) Deposit Amount");
