@@ -7,15 +7,22 @@ import java.util.Scanner;
 public class BankMenu {
     private BankService bankService;
     private BankAccount bankAccount;
+    Scanner sc = new Scanner(System.in);
 
     public BankMenu(BankService bankService, BankAccount bankAccount) {
         this.bankService = bankService;
         this.bankAccount = bankAccount;
     }
 
+    public BankMenu(BankService bankService, BankAccount bankAccount, Scanner sc) {
+        this.bankService = bankService;
+        this.bankAccount = bankAccount;
+        this.sc = sc;
+    }
+
 
     void menu() {
-        Scanner sc = new Scanner(System.in);
+
         System.out.println("Welcome " + bankAccount.getCustomerName());
         System.out.println("Your ID:" + bankAccount.getCustomerId());
         System.out.println("\n");
