@@ -5,4 +5,4 @@ on :
   pull_request:
     branches: [ main ]
   schedule:
-    -crone: '0 6 */ * *'
+    - cron: '0 0 * * *'
