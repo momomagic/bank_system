@@ -44,7 +44,7 @@ public class BankServiceTest {
 
     }
     @Test
-    public void testDepositMethodWithSendMinusAmount(){
+    public void testDepositMethodWithMinusAmount(){
         bankService.deposit(bankAccount,200.0);
         bankService.deposit(bankAccount,-200.0);
         Assertions.assertEquals(200,bankAccount.getBalance());
