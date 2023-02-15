@@ -30,4 +30,16 @@ class BankMenuTest {
         bankMenu.menu();
         verify(bankService, atLeast(1)).withdraw(bankAccount, amountWithdraw);
     }
+
+    @Test
+    void testDepositMenu() {
+        bankService = mock(BankService.class);
+        bankAccount = new BankAccount("Dummy", "123");
+        Scanner scan = mock(Scanner.class);
+        bankMenu = new BankMenu(bankService, bankAccount, scan);
+        when(scan.next()).thenReturn("b", "e");
+        when(scan.nextDouble()).thenReturn(2000.0);
+        bankMenu.menu();
+        verify(bankService, atLeast(1)).deposit(bankAccount, 2000);
+    }
 }

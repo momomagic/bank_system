@@ -13,6 +13,4 @@ public class BankApplication {
         String customerId = sc.nextLine();
         new BankMenu(new BankServiceImpl(), new BankAccount(name, customerId)).menu();
     }
-
-
 }
