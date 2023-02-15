@@ -41,7 +41,11 @@ public class BankServiceImplTest {
         Assertions.assertEquals(1500, bankAccount.getBalance());
     }
 
-
+    @Test
+    public void testNegativeAmountDepositMethod(){
+        bankServiceImpl.deposit(bankAccount,-500);
+        Assertions.assertEquals(1000, bankAccount.getBalance());
+    }
 
 
 }
