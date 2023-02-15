@@ -35,6 +35,12 @@ public class BankServiceImplTest {
         Assertions.assertEquals(1000, bankAccount.getBalance());
     }
 
+    @Test
+    public void testDepositMethodWorks(){
+        bankServiceImpl.deposit(bankAccount,500);
+        Assertions.assertEquals(1500, bankAccount.getBalance());
+    }
+
 
 
 
