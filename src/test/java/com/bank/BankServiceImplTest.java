@@ -29,6 +29,12 @@ public class BankServiceImplTest {
         Assertions.assertEquals(900, bankAccount.getBalance());
     }
 
+    @Test
+    public void testWithdrawMethodNotEnoughBalance(){
+        bankServiceImpl.withdraw(bankAccount,1100);
+        Assertions.assertEquals(1000, bankAccount.getBalance());
+    }
+
 
 
 
