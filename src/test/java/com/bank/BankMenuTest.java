@@ -9,6 +9,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.Scanner;
 
 
+import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -42,4 +43,25 @@ class BankMenuTest {
         bankMenu.menu();
         verify(bankService, atLeast(1)).deposit(bankAccount, 2000);
     }
+
+    @Test
+    void testBankMenuShouldNotThrowRunTimeException(){
+        bankService = mock(BankService.class);
+        doThrow(new RuntimeException()).when(bankService).withdraw(any(), anyDouble());
+        assertThrows(RuntimeException.class, ()->{
+            bankService.withdraw(any(),anyDouble());
+        });
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 }
