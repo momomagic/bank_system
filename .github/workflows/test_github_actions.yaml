@@ -1,0 +1,11 @@
+name: Github actions IT högskola demo
+on: [push]
+jobs:
+  Explore-github-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: echo "The job was triggered on ${{github.event_name}}"
+      - run: echo "The branch was ${{github.ref}}"
+      - run: echo "The os this was run on is ${{runner.os}}
+      - run: env
