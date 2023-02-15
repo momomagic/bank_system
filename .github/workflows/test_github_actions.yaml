@@ -7,5 +7,5 @@ jobs:
       - uses: actions/checkout@v3
       - run: echo "The job was triggered on ${{github.event_name}}"
       - run: echo "The branch was ${{github.ref}}"
-      - run: echo "The os this was run on is ${{runner.os}}
+      - run: echo "The os this was run on is ${{runner.os}}"
       - run: env
