@@ -56,20 +56,11 @@ class BankMenuTest {
             bankService.withdraw(any(),anyDouble());
         });
         when(sc.next()).thenReturn("c", "e");
-        when(sc.nextDouble()).thenReturn(anyDouble());
+        when(sc.nextDouble()).thenReturn(0.0);
+        bankMenu.menu();
         assertDoesNotThrow(() -> bankMenu.menu());
 
-
     }
-
-
-
-
-
-
-
-
-
 
 
 }
