@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 
 import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -47,21 +48,19 @@ class BankMenuTest {
     @Test
     void testBankMenuShouldNotThrowRunTimeException(){
         bankService = mock(BankService.class);
+        Scanner sc = mock(Scanner.class);
+        bankAccount = new BankAccount("Dummy", "123");
+        bankMenu = new BankMenu(bankService, bankAccount, sc);
         doThrow(new RuntimeException()).when(bankService).withdraw(any(), anyDouble());
         assertThrows(RuntimeException.class, ()->{
             bankService.withdraw(any(),anyDouble());
         });
+        when(sc.next()).thenReturn("c", "e");
+        when(sc.nextDouble()).thenReturn(0.0);
+        bankMenu.menu();
+        assertDoesNotThrow(() -> bankMenu.menu());
 
     }
-
-
-
-
-
-
-
-
-
 
 
 }
