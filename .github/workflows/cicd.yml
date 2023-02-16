@@ -1,5 +1,9 @@
 name: CI/CD
-on: [push]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 jobs:
   build_and_package:
     runs-on: ubuntu-latest
@@ -17,3 +21,9 @@ jobs:
         with:
          name: Package
          path: staging
+      - uses: actions/checkout@v2
+      - uses: dbelyaev/action-checkstyle@v0.5.1
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          level: warning
