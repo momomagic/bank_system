@@ -22,7 +22,7 @@ jobs:
          name: Package
          path: staging
       - uses: actions/checkout@v3
-      - uses: dbelyaev/action-checkstyle@v3.2.1
+      - uses: dbelyaev/action-checkstyle@v10.5.0
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
