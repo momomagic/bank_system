@@ -13,15 +13,15 @@ import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.mockito.Mockito.*;
 
-@RunWith(MockitoJUnitRunner.class)
-class BankMenuTest {
+
+public class BankMenuTest {
 
     BankService bankService;
     BankAccount bankAccount;
     BankMenu bankMenu;
 
     @Test
-    void testWithdrawMenu() {
+   public void testWithdrawMenu() {
         bankService = mock(BankService.class);
         bankAccount = new BankAccount("Dummy", "123");
         Scanner sc = mock(Scanner.class);
@@ -34,7 +34,7 @@ class BankMenuTest {
     }
 
     @Test
-    void testDepositMenu() {
+    public void testDepositMenu() {
         bankService = mock(BankService.class);
         bankAccount = new BankAccount("Dummy", "123");
         Scanner scan = mock(Scanner.class);
@@ -46,7 +46,7 @@ class BankMenuTest {
     }
 
     @Test
-    void testBankMenuShouldNotThrowRunTimeException(){
+   public void testBankMenuShouldNotThrowRunTimeException(){
         bankService = mock(BankService.class);
         Scanner sc = mock(Scanner.class);
         bankAccount = new BankAccount("Dummy", "123");
