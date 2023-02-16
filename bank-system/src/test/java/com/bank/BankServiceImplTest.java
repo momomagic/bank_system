@@ -30,7 +30,7 @@ public class BankServiceImplTest {
         bankAccount.balance = 50000.0;
         bankServiceImp.withdraw(bankAccount, 25000.0);
         System.out.println("Balance: " + bankAccount.getBalance());
-        Assertions.assertEquals(25000.0, 25000.0);
+        Assertions.assertEquals(25000.0, bankAccount.getBalance());
 
     }
 
@@ -42,5 +42,24 @@ public class BankServiceImplTest {
         bankServiceImp.withdraw(bankAccount,20000.0);
         System.out.println("Balance: " + bankAccount.getBalance());
         Assertions.assertEquals(10000.0,bankAccount.getBalance());
+    }
+
+    @Test
+    public void testDepositMethodBestCaseScenario() {
+        bankServiceImp = new BankServiceImpl();
+        bankAccount = new BankAccount("Pelle", "1");
+        bankAccount.balance = 50000.0;
+        bankServiceImp.deposit(bankAccount,25000.0);
+        System.out.println("Balance: " + bankAccount.getBalance());
+        Assertions.assertEquals(75000, bankAccount.getBalance());
+    }
+
+    @Test
+    public void testDepositMethodWithNegativeNumbers() {
+        bankServiceImp = new BankServiceImpl();
+        bankAccount = new BankAccount("Pelle","1");
+        bankAccount.balance = 10000.0;
+        bankServiceImp.deposit(bankAccount,-100);
+        System.out.println("Balance: " + bankAccount.getBalance());
     }
 }
