@@ -1,7 +1,7 @@
 package com.bank;
 
 import com.bank.service.BankService;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import org.mockito.junit.MockitoJUnitRunner;
@@ -21,7 +21,8 @@ public class BankMenuTest {
     BankMenu bankMenu;
 
     @Test
-   public void testWithdrawMenu() {
+    public void testWithdrawMenu() {
+
         bankService = mock(BankService.class);
         bankAccount = new BankAccount("Dummy", "123");
         Scanner sc = mock(Scanner.class);
@@ -46,7 +47,7 @@ public class BankMenuTest {
     }
 
     @Test
-   public void testBankMenuShouldNotThrowRunTimeException(){
+    public void testBankMenuShouldNotThrowRunTimeException(){
         bankService = mock(BankService.class);
         Scanner sc = mock(Scanner.class);
         bankAccount = new BankAccount("Dummy", "123");
