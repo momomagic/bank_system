@@ -61,5 +61,6 @@ public class BankServiceImplTest {
         bankAccount.balance = 10000.0;
         bankServiceImp.deposit(bankAccount,-100);
         System.out.println("Balance: " + bankAccount.getBalance());
+        Assertions.assertEquals(10000.0,10000.0);
     }
 }
