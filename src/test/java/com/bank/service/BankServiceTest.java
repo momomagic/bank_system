@@ -34,4 +34,12 @@ class BankServiceTest {
         assertEquals(500,balance);
     }
 
+    @Test
+    void testDeposit() {
+        bankAccount.setBalance(0);
+        bankService.deposit(bankAccount,500);
+        double balance = bankAccount.getBalance();
+        assertEquals(500,balance);
+    }
+
 }
