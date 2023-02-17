@@ -2,7 +2,8 @@ package com.bank.service;
 
 import com.bank.BankAccount;
 import com.bank.service.impl.BankServiceImpl;
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +23,15 @@ class BankServiceTest {
         bankAccount.setBalance(500);
         bankService.withdraw(bankAccount,300);
         double balance = bankAccount.getBalance();
-        Assertions.assertEquals(200,balance);
+        assertEquals(200,balance);
+    }
+
+    @Test
+    void testWithdrawAmountHigherThanAccountBalance() {
+        bankAccount.setBalance(500);
+        bankService.withdraw(bankAccount,1000);
+        double balance = bankAccount.getBalance();
+        assertEquals(500,balance);
     }
 
 }
