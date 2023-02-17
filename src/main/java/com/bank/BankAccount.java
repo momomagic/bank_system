@@ -6,9 +6,9 @@ public class BankAccount {
     String customerName;
     String customerId;
 
-    BankAccount(String customerName,String customerId){
-        this.customerName=customerName;
-        this.customerId=customerId;
+    BankAccount(String customerName, String customerId) {
+        this.customerName = customerName;
+        this.customerId = customerId;
     }
 
     public double getBalance() {
@@ -43,14 +43,12 @@ public class BankAccount {
         this.customerId = customerId;
     }
 
-    void getPreviousTrans(){
-        if(prevTrans>0){
-            System.out.println("Deposited: "+prevTrans);
-        }
-        else if(prevTrans<0){
-            System.out.println("Withdrawn: "+Math.abs(prevTrans));
-        }
-        else{
+    void getPreviousTrans() {
+        if (prevTrans > 0) {
+            System.out.println("Deposited: " + prevTrans);
+        } else if (prevTrans < 0) {
+            System.out.println("Withdrawn: " + Math.abs(prevTrans));
+        } else {
             System.out.println("No transaction occured");
         }
     }
