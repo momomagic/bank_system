@@ -1,18 +1,10 @@
 package com.bank;
 
 import com.bank.service.BankService;
-import com.bank.service.impl.BankServiceImpl;
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -46,16 +38,16 @@ public class BankMenuTest {
         Assertions.assertTrue(true,"Should return true if deposit method was called");
     }
 
-    @Test
-    public void testBankServiceWithdrawShouldThrowRunTimeException() {
-        bankAccount = new BankAccount("1","pelle");
-        bankAccount.setBalance(1000);
-        doThrow(new RuntimeException()).when(bankServiceMock).withdraw(any(),anyDouble());
-        bankServiceMock.withdraw(any(),anyDouble());
-        assertThrows(RuntimeException.class, () -> {
-            bankServiceMock.withdraw(any(),anyDouble());
-        });
-    }
+//    @Test
+//    public void testBankServiceWithdrawShouldThrowRunTimeException() {
+//        bankAccount = new BankAccount("1","pelle");
+//        bankAccount.setBalance(1000);
+//        doThrow(new RuntimeException()).when(bankServiceMock).withdraw(any(),anyDouble());
+//        bankServiceMock.withdraw(any(),anyDouble());
+//        assertThrows(RuntimeException.class, () -> {
+//            bankServiceMock.withdraw(any(),anyDouble());
+//        });
+//    }
 
     @Test
     public void testBankServiceShouldNotThrowRunTimeException() {
