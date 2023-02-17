@@ -8,11 +8,11 @@ public class BankMenu {
     private BankService bankService;
     private BankAccount bankAccount;
 
+
     public BankMenu(BankService bankService, BankAccount bankAccount) {
         this.bankService = bankService;
         this.bankAccount = bankAccount;
     }
-
 
     void menu() {
         Scanner sc = new Scanner(System.in);
