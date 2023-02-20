@@ -13,7 +13,6 @@ public class BankMenu {
         this.bankAccount = bankAccount;
     }
 
-
     void menu() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Welcome " + bankAccount.getCustomerName());
@@ -52,7 +51,11 @@ public class BankMenu {
                     System.out.println("Enter a amount to Withdraw :");
                     System.out.println("......................");
                     double amountWithdraw = sc.nextDouble();
-                    bankService.withdraw(bankAccount, amountWithdraw);
+                    try{
+                        bankService.withdraw(bankAccount, amountWithdraw);
+                    } catch (RuntimeException e) {
+                        System.out.println("Unable to withdraw. Insufficient balance");
+                    }
                     System.out.println("\n");
                 }
                 case 'd' -> {
