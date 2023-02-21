@@ -13,7 +13,6 @@ public class BankMenu {
         this.bankAccount = bankAccount;
     }
 
-
     void menu() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Welcome " + bankAccount.getCustomerName());
@@ -44,7 +43,7 @@ public class BankMenu {
                     System.out.println("Enter a amount to deposit :");
                     System.out.println("......................");
                     double amount = sc.nextDouble();
-                    bankService.deposit(bankAccount, amount);
+                    deposit(amount, bankAccount);
                     System.out.println("\n");
                 }
                 case 'c' -> {
@@ -52,7 +51,7 @@ public class BankMenu {
                     System.out.println("Enter a amount to Withdraw :");
                     System.out.println("......................");
                     double amountWithdraw = sc.nextDouble();
-                    bankService.withdraw(bankAccount, amountWithdraw);
+                    withdraw(amountWithdraw, bankAccount);
                     System.out.println("\n");
                 }
                 case 'd' -> {
@@ -71,6 +70,15 @@ public class BankMenu {
         System.out.println("Thank you for using our banking services");
     }
 
+    // breaking out to its own method as I don't find any way to test with Scanner
+    public void withdraw(double amount, BankAccount bankAccount) {
+        bankService.withdraw(bankAccount, amount);
+    }
+
+    // breaking out to its own method as I don't find any way to test with Scanner
+    public void deposit(double amount, BankAccount bankAccount) {
+        bankService.deposit(bankAccount, amount);
+    }
 
     public BankAccount getBankAccount() {
         return bankAccount;
