@@ -1,9 +1,9 @@
 name: CI/CD
 on:
   push:
-    branches: [main]
+    branches: [ main ]
   pull_request:
-    branches: [main]
+    branches: [ main ]
 jobs:
   Build_and_package:
     runs-on: Ubuntu-latest
@@ -16,4 +16,4 @@ jobs:
           distribution: 'temurin'
       - run: ls -la
       - name: Build with Maven
-        run: mvn -B package --file pom.xml
+      - run: mvn -B package --file pom.xml
