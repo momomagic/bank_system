@@ -72,7 +72,16 @@ public class BankMenu {
 
     // breaking out to its own method as I don't find any way to test with Scanner
     public void withdraw(double amount, BankAccount bankAccount) {
-        bankService.withdraw(bankAccount, amount);
+        try {
+            bankService.withdraw(bankAccount, amount);
+            System.out.println("......................");
+            System.out.println(amount + " withdrawn from your account");
+            System.out.println("......................");
+        } catch (Exception e) {
+            System.out.println("......................");
+            System.out.println("We could not process your request.");
+            System.out.println("......................");
+        }
     }
 
     // breaking out to its own method as I don't find any way to test with Scanner
