@@ -1,34 +1,48 @@
 package com.bank.service.impl;
 
 import com.bank.BankAccount;
-import org.junit.Test;
+import com.bank.BankAccountStub;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 
 public class BankServiceImplTest {
-
     private static final double BANK_ACCOUNT_BALANCE = 2000.0;
-    private static final double BANK_ACCOUNT_BALANCE_PLUS_ONE = BANK_ACCOUNT_BALANCE +1;
+    private static final double WITHDRAW_AMOUNT = 200;
+    private static final double DEPOSIT_AMOUNT = 100;
+    private static final double NEGATIVE_DEPOSIT_AMOUNT = -100;
 
     private BankServiceImpl bankService = new BankServiceImpl();
-    private BankAccount bankAccountMock = mock(BankAccount.class);
+    private BankAccount bankAccountStub = new BankAccountStub("Tester Testsson", "123456");
 
+    @BeforeEach
+    void resetAccountBalance() {
+        bankAccountStub.setBalance(BANK_ACCOUNT_BALANCE);
+    }
     @Test
-    public void testWithdrawSuccessfully() {
-        when(bankAccountMock.getBalance()).thenReturn(BANK_ACCOUNT_BALANCE);
-        bankService.withdraw(bankAccountMock, BANK_ACCOUNT_BALANCE);
-
-        verify(bankAccountMock, times(1)).setBalance(anyDouble());
-        verify(bankAccountMock, times(1)).setPrevTrans(anyDouble());
+    void testWithdrawSuccessfully() {
+        bankService.withdraw(bankAccountStub, WITHDRAW_AMOUNT);
+        assertEquals(BANK_ACCOUNT_BALANCE - WITHDRAW_AMOUNT, bankAccountStub.getBalance());
     }
 
     @Test
-    public void testWithdrawFailed() {
-        when(bankAccountMock.getBalance()).thenReturn(BANK_ACCOUNT_BALANCE);
-        bankService.withdraw(bankAccountMock, BANK_ACCOUNT_BALANCE_PLUS_ONE);
+    void testWithdrawFailed() {
+        bankService.withdraw(bankAccountStub, WITHDRAW_AMOUNT + BANK_ACCOUNT_BALANCE);
+        assertEquals(BANK_ACCOUNT_BALANCE, bankAccountStub.getBalance());
+    }
 
-        verify(bankAccountMock, times(0)).setBalance(anyDouble());
-        verify(bankAccountMock, times(0)).setPrevTrans(anyDouble());
+    @Test
+    void testDepositSuccessfully() {
+        bankService.deposit(bankAccountStub, DEPOSIT_AMOUNT);
+        assertEquals(BANK_ACCOUNT_BALANCE + DEPOSIT_AMOUNT, bankAccountStub.getBalance());
+    }
+
+    @Test
+    void testDepositNegativeNumber() {
+        bankService.deposit(bankAccountStub, NEGATIVE_DEPOSIT_AMOUNT);
+        assertEquals(BANK_ACCOUNT_BALANCE, bankAccountStub.getBalance());
     }
 }
