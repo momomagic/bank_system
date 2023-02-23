@@ -1,9 +1,10 @@
-# Bank System
+# Bank System  
+by David Waldholm  
   
-## by David Waldholm  
   
   
-### Features 
+    
+## Features 
 * See balance
 * Withdraw
 * Deposit
