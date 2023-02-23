@@ -1,4 +1,4 @@
-package com.bank;
+package main.java.com.bank;
 
 public class BankAccount {
     double balance;

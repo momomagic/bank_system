@@ -1,6 +1,6 @@
-package com.bank;
+package main.java.com.bank;
 
-import com.bank.service.BankService;
+import main.java.com.bank.service.BankService;
 
 import java.util.Scanner;
 
