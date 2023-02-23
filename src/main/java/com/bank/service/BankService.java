@@ -1,6 +1,6 @@
-package main.java.com.bank.service;
+package com.bank.service;
 
-import main.java.com.bank.BankAccount;
+import com.bank.BankAccount;
 
 public interface BankService {
     void withdraw(final BankAccount bankAccount, final double amount);

@@ -1,7 +1,7 @@
-package main.java.com.bank.service.impl;
+package com.bank.service.impl;
 
-import main.java.com.bank.BankAccount;
-import main.java.com.bank.service.BankService;
+import com.bank.BankAccount;
+import com.bank.service.BankService;
 
 public class BankServiceImpl implements BankService {
     @Override
