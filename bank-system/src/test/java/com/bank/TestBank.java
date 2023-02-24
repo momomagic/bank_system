@@ -126,6 +126,39 @@ grön
 
     }
 
+    //Skriv tester till BankMenu med mock(BankService) till deposit och withdraw
+    @Test
+    public void testDepositBankMenu () {
+        BankServiceImpl bankService1 = mock(BankServiceImpl.class);
+        BankAccount dummyBankAccount = new BankAccount( "Dummy", "1");
+        Scanner scan = mock(Scanner.class);
+
+        BankMenu test = new BankMenu(bankService1, dummyBankAccount, scan);
+        when(scan.next()).thenReturn("b", "e");
+        when(scan.nextDouble()).thenReturn(100.0);
+
+        test.menu();
+
+        verify(bankService1, times(1)).deposit(dummyBankAccount, 100.0);
+
+    }
+
+    @Test
+    public void testWithdrawBankMenu () {
+        BankServiceImpl bankService1 = mock(BankServiceImpl.class);
+        BankAccount dummyBankAccount = new BankAccount( "Dummy", "1");
+        Scanner scan = mock(Scanner.class);
+
+        BankMenu test = new BankMenu(bankService1, dummyBankAccount, scan);
+        when(scan.next()).thenReturn("c", "e");
+        when(scan.nextDouble()).thenReturn(100.0);
+
+        test.menu();
+
+        verify(bankService1, times(1)).withdraw(dummyBankAccount, 100);
+
+    }
+
 
 
 }

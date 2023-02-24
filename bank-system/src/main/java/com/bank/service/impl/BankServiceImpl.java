@@ -16,6 +16,7 @@ public class BankServiceImpl implements BankService {
 
     @Override
     public void deposit(BankAccount bankAccount, double amount) {
+        //Changed so the value has to be bigger than zero
         if (amount > 0) {
             bankAccount.setBalance(bankAccount.getBalance() + amount);
             bankAccount.setPrevTrans(amount);

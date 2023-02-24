@@ -22,7 +22,7 @@ public class BankMenu {
 
 
     void menu() {
-        Scanner sc = new Scanner(System.in);
+
         System.out.println("Welcome " + bankAccount.getCustomerName());
         System.out.println("Your ID:" + bankAccount.getCustomerId());
         System.out.println("\n");
@@ -36,7 +36,7 @@ public class BankMenu {
         do {
             System.out.println("********************************************");
             System.out.println("Choose an option");
-            option = sc.next().charAt(0);
+            option = scan.next().charAt(0);
             System.out.println("\n");
 
             switch (option) {
@@ -50,15 +50,16 @@ public class BankMenu {
                     System.out.println("......................");
                     System.out.println("Enter a amount to deposit :");
                     System.out.println("......................");
-                    double amount = sc.nextDouble();
+                    double amount = scan.nextDouble();
                     bankService.deposit(bankAccount, amount);
+                    System.out.println(bankAccount.getBalance());
                     System.out.println("\n");
                 }
                 case 'c' -> {
                     System.out.println("......................");
                     System.out.println("Enter a amount to Withdraw :");
                     System.out.println("......................");
-                    double amountWithdraw = sc.nextDouble();
+                    double amountWithdraw = scan.nextDouble();
                     bankService.withdraw(bankAccount, amountWithdraw);
                     System.out.println("\n");
                 }
