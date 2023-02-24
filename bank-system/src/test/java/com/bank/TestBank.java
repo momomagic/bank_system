@@ -60,19 +60,30 @@ grön
 
     }
 
+    //Testa withdraw metod med amount som är större än vad BankAccount har i balance
     @Test
     public void testWithdrawalToBigWithdrawalBankServiceImpl() {
+
+        /*
+
+        Denna skapar ett bankAccount med saldo 100.
+        Sedan försöks det ta ut 200 kr.
+        
+        Testet kollar om det är kvar 100 kr på kontot.
+
+        Eftersom Withdrawal är konstruerad på det sättet, att om beloppet är för stort så dras inga pengar.
+
+
+         */
 
         BankAccount dummyBankAccount = new BankAccount("Dummy", "1");
         dummyBankAccount.setBalance(100.00);
 
-        System.out.println(dummyBankAccount.getCustomerName());
-        System.out.println(dummyBankAccount.getCustomerId());
-        System.out.println(dummyBankAccount.getBalance());
-
+        //Trying to withdraw too much money
         BankServiceImpl dummyWithdraw = mock(BankServiceImpl.class);
         dummyWithdraw.withdraw(dummyBankAccount, 200);
 
+        //Because that I tried to withdraw too much money, I still have 100 left (Withdrawal denied).
         assertEquals(100.00, dummyBankAccount.getBalance());
 
 
