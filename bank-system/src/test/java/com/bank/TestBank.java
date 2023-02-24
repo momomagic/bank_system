@@ -14,27 +14,7 @@ import java.util.Scanner;
 import static org.mockito.Mockito.*;
 
 public class TestBank {
-
-    /*
-   Skriv tester till BankServiceImpl så att den testar
-o En test till withdraw metod med ”best case senario” d.v.s att
-den fungerar som det ska
-o Testa withdraw metod med amount som är större än vad
-BankAccount har i balance
-o En test till deposit metod med ”best case senario”
-o Testa om du kan deposit med -100 ? ändra metod kod så att
-den ska vara logisk och inte tillåter att skicka deposit med 0
-eller lägre
-• Skriv tester till BankMenu med mock(BankService) till deposit och
-withdraw
-• Om bankService.withdraw skickats tillbaka RuntimeException() vad
-kommer att hända i ditt flöde ? Använd TDD så att du kan skriva
-test som kastar så att BankMenu().menu() kastar inga exception om
-withdraw kastat exception och sen ändrar kod för att låta test vara
-grön
-• Skicka en PR med dina ändringar till andra teammedlemmar .
-
-     */
+    
 
     BankAccount bankAccount;
     BankService bankService;
@@ -159,6 +139,26 @@ grön
 
     }
 
+    /*Om bankService.withdraw skickats tillbaka RuntimeException() vad
+    kommer att hända i ditt flöde ? Använd TDD så att du kan skriva
+    test som kastar så att BankMenu().menu() kastar inga exception om
+    withdraw kastat exception och sen ändrar kod för att låta test vara
+    grön
+     */
 
+    @Test
+    public void testBankMenuShouldNotThrowRunTimeException() {
+        bankService = mock(BankService.class);
+        Scanner sc = mock(Scanner.class);
+        bankAccount = new BankAccount("Dummy", "123");
+        bankMenu = new BankMenu(bankServiceImpl, bankAccount, sc);
+        doThrow(new RuntimeException()).when(bankServiceImpl).withdraw(any(), anyDouble());
+        assertThrows(RuntimeException.class, () -> bankServiceImpl.withdraw(any(), anyDouble()));
+        when(sc.next()).thenReturn("c", "e");
+        when(sc.nextDouble()).thenReturn(0.0);
+        bankMenu.menu();
+        assertDoesNotThrow(() -> bankMenu.menu());
+
+    }
 
 }
