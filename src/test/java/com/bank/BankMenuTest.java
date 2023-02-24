@@ -1,13 +1,9 @@
 package com.bank;
 
 import com.bank.service.BankService;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.io.ByteArrayInputStream;
-import java.util.Scanner;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class BankMenuTest {
@@ -26,7 +22,8 @@ class BankMenuTest {
     @Test
     void testDeposit() {
         bankAccount.setBalance(0);
-        String userInput = "b" + System.lineSeparator() + "1000" + System.lineSeparator() + "e";
+        String userInput = "b" + System.lineSeparator() + "1000"
+                + System.lineSeparator() + "e";
         ByteArrayInputStream savedInputStream = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(savedInputStream);
         bankMenu.menu();

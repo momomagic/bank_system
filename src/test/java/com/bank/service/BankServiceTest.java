@@ -2,11 +2,10 @@ package com.bank.service;
 
 import com.bank.BankAccount;
 import com.bank.service.impl.BankServiceImpl;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 class BankServiceTest {
 
@@ -15,40 +14,37 @@ class BankServiceTest {
 
     @BeforeEach
     void setUp() {
-        bankAccount = new BankAccount("Ismail","1");
+        bankAccount = new BankAccount("Ismail", "1");
         bankService = new BankServiceImpl();
+        bankAccount.setBalance(500);
     }
 
     @Test
     void testWithdraw() {
-        bankAccount.setBalance(500);
-        bankService.withdraw(bankAccount,300);
+        bankService.withdraw(bankAccount, 300);
         double balance = bankAccount.getBalance();
-        assertEquals(200,balance);
+        assertEquals(200, balance);
     }
 
-    @Test// TODO: 2023-02-21
-    @Disabled
+    @Test
     void testWithdrawAmountHigherThanAccountBalance() {
-        bankAccount.setBalance(500);
-        bankService.withdraw(bankAccount,1000);
-        double balance = bankAccount.getBalance();
-        assertEquals(500,balance);
+        assertThrows(RuntimeException.class, () -> {
+            bankService.withdraw(bankAccount, 1000);
+        });
     }
 
     @Test
     void testDeposit() {
-        bankAccount.setBalance(0);
-        bankService.deposit(bankAccount,500);
+        bankService.deposit(bankAccount, 500);
         double balance = bankAccount.getBalance();
-        assertEquals(500,balance);
+        assertEquals(1000, balance);
     }
 
     @Test
     void testDepositNegativeAmount() {
-        bankService.deposit(bankAccount,-100);
+        bankService.deposit(bankAccount, -100);
         double balance = bankAccount.getBalance();
-        assertEquals(0,balance);
+        assertEquals(500, balance);
     }
 
 }
