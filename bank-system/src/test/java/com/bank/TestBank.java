@@ -54,29 +54,75 @@ grön
 
          */
 
-        BankServiceImpl dummyWithdraw = mock(BankServiceImpl.class);
-        dummyWithdraw.withdraw(bankAccount, 100);
-        verify(dummyWithdraw, times(1)).withdraw(bankAccount, 100);
+        BankServiceImpl withdrawTest = mock(BankServiceImpl.class);
+        withdrawTest.withdraw(bankAccount, 100);
+        verify(withdrawTest, times(1)).withdraw(bankAccount, 100);
 
     }
 
+    //Testa withdraw metod med amount som är större än vad BankAccount har i balance
     @Test
     public void testWithdrawalToBigWithdrawalBankServiceImpl() {
+
+        /*
+
+        Denna skapar ett bankAccount med saldo 100.
+        Sedan försöks det ta ut 200 kr.
+
+        Testet kollar om det är kvar 100 kr på kontot.
+
+        Eftersom Withdrawal är konstruerad på det sättet, att om beloppet är för stort så dras inga pengar.
+
+
+         */
 
         BankAccount dummyBankAccount = new BankAccount("Dummy", "1");
         dummyBankAccount.setBalance(100.00);
 
-        System.out.println(dummyBankAccount.getCustomerName());
-        System.out.println(dummyBankAccount.getCustomerId());
-        System.out.println(dummyBankAccount.getBalance());
-
+        //Trying to withdraw too much money
         BankServiceImpl dummyWithdraw = mock(BankServiceImpl.class);
         dummyWithdraw.withdraw(dummyBankAccount, 200);
 
+        //Because that I tried to withdraw too much money, I still have 100 left (Withdrawal denied).
         assertEquals(100.00, dummyBankAccount.getBalance());
 
 
+    }
 
+    //En test till deposit metod med ”best case scenario”
+    @Test
+
+    public void TestDepositWhenItWorks() {
+
+        /*
+
+        Denna testar endast att deposit metoden har exekverats en gång. Den använder ett mock
+        bankAccount och en random siffra (här 100).
+
+         */
+
+        BankServiceImpl depositTest = mock(BankServiceImpl.class);
+        depositTest.deposit(bankAccount, 100);
+        verify(depositTest, times(1)).deposit(bankAccount, 100);
+
+    }
+
+    //Testa om du kan deposit med -100 ? ändra metod kod så att den ska vara logisk och inte tillåter att skicka deposit med 0
+    //eller lägre
+    @Test
+
+    public void testDepositNegative () {
+
+        //I create an account with 100 balance
+        BankAccount dummyBankAccount = new BankAccount("Dummy", "1");
+        dummyBankAccount.setBalance(100);
+
+        //I try to deposit a negative number! I have changed in the method so this is not allowed.
+        BankServiceImpl depositNegativeTest = mock(BankServiceImpl.class);
+        depositNegativeTest.deposit(dummyBankAccount, -500);
+
+        //I assert that the bankaccount still has 100. It rejected the deposit.
+        assertEquals(100, dummyBankAccount.getBalance());
 
     }
 
