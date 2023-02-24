@@ -7,10 +7,17 @@ import java.util.Scanner;
 public class BankMenu {
     private BankService bankService;
     private BankAccount bankAccount;
+    private Scanner scan = new Scanner(System.in);
 
     public BankMenu(BankService bankService, BankAccount bankAccount) {
         this.bankService = bankService;
         this.bankAccount = bankAccount;
+    }
+
+    public BankMenu(BankService bankService, BankAccount bankAccount, Scanner scan) {
+        this.bankService = bankService;
+        this.bankAccount = bankAccount;
+        this.scan = scan;
     }
 
 
