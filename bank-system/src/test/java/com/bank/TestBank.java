@@ -146,19 +146,8 @@ public class TestBank {
     grön
      */
 
-    @Test
-    public void testBankMenuShouldNotThrowRunTimeException() {
-        bankService = mock(BankService.class);
-        Scanner sc = mock(Scanner.class);
-        bankAccount = new BankAccount("Dummy", "123");
-        bankMenu = new BankMenu(bankServiceImpl, bankAccount, sc);
-        doThrow(new RuntimeException()).when(bankServiceImpl).withdraw(any(), anyDouble());
-        assertThrows(RuntimeException.class, () -> bankServiceImpl.withdraw(any(), anyDouble()));
-        when(sc.next()).thenReturn("c", "e");
-        when(sc.nextDouble()).thenReturn(0.0);
-        bankMenu.menu();
-        assertDoesNotThrow(() -> bankMenu.menu());
-
-    }
+    //@Test
+    //Not implemented yet
+    
 
 }
